@@ -1,6 +1,7 @@
 # Nextcloud notifcation poller for termux
 $LOAD_PATH<<"."
 
+require 'fileutils'
 require 'auth.rb'
 require 'notifications.rb'
 
