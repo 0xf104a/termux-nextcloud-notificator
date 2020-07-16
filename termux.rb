@@ -1,5 +1,5 @@
 def sanitize(s)
-   s.sub('"','\"')
+   '"'+s.sub('"','\"')+'"'
 end
 module Termux
    def self.open_url(url)
