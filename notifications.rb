@@ -31,7 +31,7 @@ module Notifications
        furl=notification["icon"]
        fname=furl.split("/")[-1]
        download_file(furl,Dir.pwd+"/.cache/"+fname)
-       Termux::notify(content=notification["message"], group=notification["app"], id=notification["id"], title=notification["subject"], image=Dir.pwd+"/.cache/"+fname)
+       Termux::notify(content=notification["message"], group=notification["app"], n_id=notification["notification_id"], title=notification["subject"], image=Dir.pwd+"/.cache/"+fname)
    end
 
    def self.start_polling(endpoint, user, appPassword, sleep_time=5)

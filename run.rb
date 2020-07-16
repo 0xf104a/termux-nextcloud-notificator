@@ -5,8 +5,8 @@ require 'fileutils'
 require 'auth.rb'
 require 'notifications.rb'
 
-USER="user"
-ENDPOINT="cloud.example.com"
+USER="p01ar"
+ENDPOINT="cloud.p01ar.net"
 
 FileUtils.mkdir_p(".cache")
 
