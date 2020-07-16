@@ -1,4 +1,6 @@
-
+def sanitize(s)
+   s.sub('"','\"')
+end
 module Termux
    def self.open_url(url)
        `termux-open-url #{url.dump()}`
@@ -6,6 +8,6 @@ module Termux
    
    def self.notify(content, group, n_id, title, image)
        print("termux-notification -c #{content.dump()} --group #{group.dump()} -i #{n_id} --title #{title.dump()} --image-path #{image.dump()}\n")
-       `termux-notification -c #{content.encode("utf-8").dump()} --title #{title.encode("utf-8").dump()} --id #{n_id} --group #{group.dump()}`
+       `termux-notification -c #{sanitize(content)} --title #{sanitize(title)} --id #{n_id} --group #{sanitize(group)}`
    end
 end
