@@ -12,9 +12,9 @@ end
 module Notifications
    class <<self
        attr_accessor :displayed
-       @displayed=Set.new([])
    end
 
+   @displayed=Set.new([])
    def self.poll(endpoint, user, appPassword)
        resp=HTTParty.get("https://#{endpoint}/ocs/v2.php/apps/notifications/api/v2/notifications", :basic_auth => {:username => user, :password => appPassword}, :headers => {"Accept" => "application/json"})
        notifications=resp.parsed_response["ocs"]["data"]
@@ -31,7 +31,7 @@ module Notifications
        furl=notification["icon"]
        fname=furl.split("/")[-1]
        download_file(furl,Dir.pwd+"/.cache/"+fname)
-       Termux::notify(content=notification, group=notification["app"], id=notification["id"], title=notification["subject"], )
+       Termux::notify(content=notification["message"], group=notification["app"], id=notification["id"], title=notification["subject"], image=Dir.pwd+"/.cache/"+fname)
    end
 
    def self.start_polling(endpoint, user, appPassword, sleep_time=5)
