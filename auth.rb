@@ -5,7 +5,7 @@ require 'logging.rb'
 
 module Auth
   def self.authenticate(endpoint, poll_time=2)
-      print("=> Authenticating at #{endpoint}\n")
+      Logging::info("Authenticating at #{endpoint}\n")
       resp=HTTParty.post("https://#{endpoint}/index.php/login/v2")
       json=JSON.parse(resp.body)
       poll=json["poll"]["endpoint"]
@@ -13,11 +13,11 @@ module Auth
       login=json["login"]
       Logging::info("Opening login page #{login}\n")
       Termux::open_url(login)
-      print("=> token=#{token}\n")
+      Logging::debug("token=#{token}\n")
       authorised=false
       while not authorised
           resp=HTTParty.post("https://cloud.p01ar.net/index.php/login/v2/poll", :body=> {:token => token})
-          Logger::debug("Polling response code #{resp.code}\n")
+          Logging::debug("Polling response code #{resp.code}\n")
           if resp.code == 200 then
              authorised=true
           end
