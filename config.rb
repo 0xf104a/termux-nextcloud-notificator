@@ -23,6 +23,7 @@ module Config
   def self.get(var_name)
     if @config.length==0 then
        Logger::error("Config is empty. This can lead to further errors. Please check that configuration file is correct.")
+    end
     path=var_name.split(".")
     context = @config
     path.each do |section|
