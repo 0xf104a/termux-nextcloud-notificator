@@ -21,6 +21,6 @@ module Logging
    print("#{ORANGE}#{BOLD}WARN  #{ENDC+BOLD}| #{get_time}:#{ENDC}#{message}\n")
  end
  def self.error(message)
-   print("#{BLUE}#{BOLD}ERROR #{ENDC+BOLD}| #{get_time}:#{ENDC}#{message}\n")
+   print("#{RED}#{BOLD}ERROR #{ENDC+BOLD}| #{get_time}:#{ENDC}#{message}\n")
  end
 end
