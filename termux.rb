@@ -1,4 +1,4 @@
-require 'logger.rb'
+require 'logging.rb'
 def sanitize(s)
    '"'+s.sub('"','\"')+'"'
 end

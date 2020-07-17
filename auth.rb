@@ -1,6 +1,7 @@
 require 'httparty'
 require 'json'
 require 'termux.rb'
+require 'logging.rb'
 
 module Auth
   def self.authenticate(endpoint, poll_time=2)

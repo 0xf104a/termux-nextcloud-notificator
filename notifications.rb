@@ -1,6 +1,6 @@
 require 'httparty'
 require 'termux.rb'
-require 'logger.rb'
+require 'logging.rb'
 
 def download_file(url, filename)
       File.open(filename, "w+") do |file|

@@ -2,7 +2,7 @@
 $LOAD_PATH<<"."
 
 require 'fileutils'
-require 'logger.rb'
+require 'logging.rb'
 require 'auth.rb'
 require 'notifications.rb'
 
