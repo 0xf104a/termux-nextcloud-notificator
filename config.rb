@@ -22,19 +22,21 @@ module Config
 
   def self.get(var_name)
     if @config.length==0 then
-       Logger::error("Config is empty. This can lead to further errors. Please check that configuration file is correct.")
+       Logging::error("Config is empty. This can lead to further errors. Please check that configuration file is correct.")
     end
     path=var_name.split(".")
     context = @config
     path.each do |section|
        begin 
         if not context.has_key(section) then
-           Logger::error("Failed to find #{var_name} in config")
+           Logging::error("Failed to find #{var_name} in config")
            return nil
         end
        rescue Exception => e
-           Logger::error("Failed to parse config: #{e.message}")
+           Logging::error("Failed to parse config: #{e.message}")
+           return nil
        end
+       context=context[section]
     end
   end
 end
