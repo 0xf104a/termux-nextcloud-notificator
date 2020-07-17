@@ -1,0 +1,16 @@
+# Manually-written configuration for Nextcloud notification poller
+cloud:
+  domain: "cloud.p01ar.net" # Domain of your Nextcloud
+  user: "p01ar" # You username in Nextcloud
+
+polling:
+  interval: 5 # Interval in seconds between polling requests
+
+logging:
+  file: "notificator.log"
+  level: debug
+
+app:
+  cache: "~/.cache" # Cache directory(created automatically)
+  password: "~/.appPassword" # app-password storage(created automatically)
+
