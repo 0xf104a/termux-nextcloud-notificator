@@ -20,4 +20,8 @@ end
 
 password=File.read(".appPassword")
 Logging::info("Succesfully read app password from file")
-Notifications::start_polling(ENDPOINT, USER, password)
+begin
+  Notifications::start_polling(ENDPOINT, USER, password)
+rescue Interrupt
+  Logging::info("User requested stop. Exiting gracefully...")
+end
