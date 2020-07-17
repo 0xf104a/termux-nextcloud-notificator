@@ -32,5 +32,6 @@ module Config
        rescue Exception => e
            Logger::error("Failed to parse config: #{e.message}"
        end
+    end
   end
 end
