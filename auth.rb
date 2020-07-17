@@ -10,7 +10,7 @@ module Auth
       poll=json["poll"]["endpoint"]
       token=json["poll"]["token"]
       login=json["login"]
-      Logger::info("Opening login page #{login}\n")
+      Logging::info("Opening login page #{login}\n")
       Termux::open_url(login)
       print("=> token=#{token}\n")
       authorised=false
@@ -22,7 +22,7 @@ module Auth
           end
           sleep(poll_time)
      end
-     Logger::info("Authentication succeeded\n")
+     Logging::info("Authentication succeeded\n")
      token=JSON.parse(resp.body)["appPassword"]
      token
   end

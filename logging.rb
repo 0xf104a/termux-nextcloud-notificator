@@ -10,7 +10,7 @@ def get_time
  Time.now.to_s
 end
 
-module Logger 
+module Logging
  def self.info(message)
    print("#{BLUE}#{BOLD}INFO  #{ENDC+BOLD}| #{get_time}:#{ENDC}#{message}\n")
  end
