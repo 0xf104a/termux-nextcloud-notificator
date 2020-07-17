@@ -10,7 +10,7 @@ module Config
   @config_fname = nil
   @config = {}
 
-  def load(fname='config.yml')
+  def self.load(fname='config.yml')
     begin
       @config = YAML.parse_file(fname).to_ruby
       @config_fname = fname
@@ -20,7 +20,9 @@ module Config
     end
   end
 
-  def get(var_name)
+  def self.get(var_name)
+    if @config.length==0 then
+       Logger::error("Config is empty. This can lead to further errors. Please check that configuration file is correct.")
     path=var_name.split(".")
     context = @config
     path.each do |section|

@@ -9,6 +9,7 @@ require 'config.rb'
 
 CONFIGFILE="config.yml"
 
+Config::load(CONFIGFILE)
 
 FileUtils.mkdir_p(Config::get("app.cache"))
 
