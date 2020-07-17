@@ -30,7 +30,7 @@ module Config
            return nil
         end
        rescue Exception => e
-           Logger::error("Failed to parse config: #{e.message}"
+           Logger::error("Failed to parse config: #{e.message}")
        end
     end
   end
