@@ -28,7 +28,7 @@ module Config
     context = @config
     path.each do |section|
        begin 
-        if not context.has_key(section) then
+        if not context.has_key?(section) then
            Logging::error("Failed to find #{var_name} in config")
            return nil
         end
@@ -38,5 +38,6 @@ module Config
        end
        context=context[section]
     end
+    return context
   end
 end

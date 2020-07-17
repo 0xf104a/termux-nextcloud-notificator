@@ -1,6 +1,6 @@
 # Manually-written configuration for Nextcloud notification poller
 cloud:
-  domain: "cloud.p01ar.net" # Domain of your Nextcloud
+  endpoint: "cloud.p01ar.net" # Domain of your Nextcloud
   user: "p01ar" # You username in Nextcloud
 
 polling:

@@ -12,15 +12,15 @@ end
 
 module Logging
  def self.info(message)
-   print("#{BLUE}#{BOLD}INFO  #{ENDC+BOLD}| #{get_time}:#{ENDC}#{message}\n")
+   print("\r#{BLUE}#{BOLD}INFO  #{ENDC+BOLD}| #{get_time}:#{ENDC}#{message}\n")
  end
  def self.debug(message)
-   print("#{GREEN}#{BOLD}DEBUG #{ENDC+BOLD}| #{get_time}:#{ENDC}#{message}\n")
+   print("\r#{GREEN}#{BOLD}DEBUG #{ENDC+BOLD}| #{get_time}:#{ENDC}#{message}\n")
  end 
  def self.warn(message)
-   print("#{ORANGE}#{BOLD}WARN  #{ENDC+BOLD}| #{get_time}:#{ENDC}#{message}\n")
+   print("\r#{ORANGE}#{BOLD}WARN  #{ENDC+BOLD}| #{get_time}:#{ENDC}#{message}\n")
  end
  def self.error(message)
-   print("#{RED}#{BOLD}ERROR #{ENDC+BOLD}| #{get_time}:#{ENDC}#{message}\n")
+   print("\r#{RED}#{BOLD}ERROR #{ENDC+BOLD}| #{get_time}:#{ENDC}#{message}\n")
  end
 end
