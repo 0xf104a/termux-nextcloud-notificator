@@ -10,6 +10,7 @@ def download_file(url, filename)
         end
       end
 end
+
 module Notifications
    class <<self
        attr_accessor :displayed
