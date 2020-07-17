@@ -1,5 +1,6 @@
 require 'httparty'
 require 'termux.rb'
+require 'logger.rb'
 
 def download_file(url, filename)
       File.open(filename, "w+") do |file|
@@ -31,16 +32,22 @@ module Notifications
        furl=notification["icon"]
        fname=furl.split("/")[-1]
        download_file(furl,Dir.pwd+"/.cache/"+fname)
+       Logger::debug("Sending notification: #{notification["message"]}")
        Termux::notify(content=notification["message"], group=notification["app"], n_id=notification["notification_id"], title=notification["subject"], image=Dir.pwd+"/.cache/"+fname)
    end
 
    def self.start_polling(endpoint, user, appPassword, sleep_time=5)
        while true
+        begin
+	  Logger::debug("Polling new messages")
 	  notifications=self.poll(endpoint, user, appPassword)
           notifications.each do |notification|
               self.display_notification(notification)
           end
-          sleep(sleep_time)
+        rescue Exception => e
+          Logger::error("Exception while polling: #{e.message}")
+        end
+        sleep(sleep_time)
        end
   end
 end 
