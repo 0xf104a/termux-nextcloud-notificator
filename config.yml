@@ -7,10 +7,10 @@ polling:
   interval: 5 # Interval in seconds between polling requests
 
 logging:
-  file: "notificator.log"
+  file: "/data/data/com.termux/files/usr/var/log/notificator.log"
   level: debug
 
 app:
-  cache: ".cache" # Cache directory(created automatically)
-  password: ".appPassword" # app-password storage(created automatically)
+  cache: "/data/data/com.termux/files/usr/var/cache/notificator-cache" # Cache directory(created automatically)
+  password: "/data/data/com.termux/files/usr/var/cache/notificator-auth" # app-password storage(created automatically)
 

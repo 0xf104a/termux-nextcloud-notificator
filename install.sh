@@ -68,7 +68,7 @@ leave_dir(){
 }
 
 check_equal(){
-    printf "${bold}${blue}=>${normal}Checking equality: ${1} and ${2}..."
+    printf "${bold}${blue}=>${normal} Checking equality: ${1} and ${2}..."
     if ! cmp $1 $2 >/dev/null 2>&1
     then
       printf "${bold}${red}FAILED${normal}\n"
@@ -88,7 +88,7 @@ require_equal(){
 }
 
 check_command(){
-    printf "${bold}${blue}=>${normal}Checking that ${1} avail..."
+    printf "${bold}${blue}=> ${normal}Checking that ${1} avail..."
     if ! [ -x "$(command -v ${1})" ]; then
       printf "${bold}${red}FAILED${normal}\n"
       return -1
