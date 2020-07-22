@@ -10,7 +10,7 @@ if test -t 1; then
     blue=$(tput setaf 4)
     yellow=$(tput setaf 11)
 else
-    echo "[!]: No colors will be available: not supported."
+    echo "(!) No colors will be available: not supported."
 fi
 
 error(){
@@ -88,7 +88,7 @@ require_equal(){
 }
 
 check_command(){
-    printf "${bold}${blue}[*]:${normal}Checking that ${1} avail..."
+    printf "${bold}${blue}=>${normal}Checking that ${1} avail..."
     if ! [ -x "$(command -v ${1})" ]; then
       printf "${bold}${red}FAILED${normal}\n"
       return -1
