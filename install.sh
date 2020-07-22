@@ -118,6 +118,10 @@ if [[ $1 == "-h" ]]; then
     echo "deps      Installs required packages to run the app"
     echo "gems      Installs gems"
     echo "install   Copies files and registers program"
+    echo "uninstall Removes program"
+    echo "deauth    Removes tokens and cache"
+    echo "update    Updates to a latest development version from git"
+    echo "configure Opens vim to configure program"
     exit 0
 fi
 
@@ -152,6 +156,33 @@ target_install(){
     exec "cp ./config.yml ${TERMUX_ROOT}/usr/etc/nextcloud-notificator.yml"
     success "Installation complete"
 }
+target_deauth(){
+    info "Removing tokens"
+    exec "rm -rf /data/data/com.termux/files/usr/var/cache/notificator-cache"
+    exec "rm -rf /data/data/com.termux/files/usr/var/cache/notificator-auth"
+    success "Tokens cleaned"
+}
+target_uninstall(){
+    info "Installing nextcloud-notificator"
+    exec "rm -rf ${TERMUX_ROOT}/usr/share/nextcloud-notificator"
+    exec "rm -rf ${TERMUX_ROOT}/home/.termux/boot/boot-notificator.sh"
+    exec "rm -rf ${TERMUX_ROOT}/usr/etc/nextcloud-notificator.yml"
+    success "Uninstallation complete"
+}
+
+target_update(){
+    require_command "git"
+    exec "git pull"
+    target_uninstall
+    target_gems
+    target_install
+}
+
+target_configure(){
+    require_command "vim"
+    exec "vim /data/data/com.termux/files/usr/etc/nextcloud-notificator.yml"
+}
+
 target_all(){
     target_deps
     target_gems

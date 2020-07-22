@@ -8,7 +8,7 @@ polling:
 
 logging:
   file: "/data/data/com.termux/files/usr/var/log/notificator.log"
-  level: debug
+  level: info
 
 app:
   cache: "/data/data/com.termux/files/usr/var/cache/notificator-cache" # Cache directory(created automatically)
