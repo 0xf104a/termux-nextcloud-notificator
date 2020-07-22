@@ -173,7 +173,8 @@ target_uninstall(){
 target_update(){
     require_command "git"
     exec "git pull"
-    target_uninstall
+    exec "rm -rf ${TERMUX_ROOT}/usr/share/nextcloud-notificator"
+    exec "rm -rf ${TERMUX_ROOT}/home/.termux/boot/boot-notificator.sh"
     target_gems
     target_install
 }
