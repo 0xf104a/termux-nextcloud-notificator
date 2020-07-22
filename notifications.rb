@@ -48,6 +48,9 @@ module Notifications
           notifications.each do |notification|
               self.display_notification(notification)
           end
+        rescue Interrupt
+          Logging::info("User reequested stop. Exiting")
+          return
         rescue Exception => e
           Logging::error("Exception while polling: #{e.message}")
         end
