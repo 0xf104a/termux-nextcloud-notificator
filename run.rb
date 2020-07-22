@@ -1,3 +1,4 @@
+#!/data/data/com.termux/files/usr/bin/env ruby
 # Nextcloud notifcation poller for termux
 $LOAD_PATH<<"."
 
@@ -7,7 +8,7 @@ require 'auth.rb'
 require 'notifications.rb'
 require 'config.rb'
 
-CONFIGFILE="config.yml"
+CONFIGFILE="/data/data/com.termux/files/usr/etc/nextcloud-notificator.yml"
 
 Config::load(CONFIGFILE)
 
@@ -25,7 +26,7 @@ end
 password=File.read(appPassword)
 Logging::info("Succesfully read app password from file")
 begin
-  Notifications::start_polling(Config::get("cloud.endpoint"), Config::get("cloud.user"), password)
+  Notifications::start_polling(Config::get("cloud.endpoint"), Config::get("cloud.user"), password, Config::get("polling.interval"))
 rescue Interrupt
   Logging::info("User requested stop. Exiting gracefully...")
 end

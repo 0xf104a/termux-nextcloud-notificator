@@ -19,6 +19,9 @@ module Notifications
    @displayed=Set.new([])
    def self.poll(endpoint, user, appPassword)
        resp=HTTParty.get("https://#{endpoint}/ocs/v2.php/apps/notifications/api/v2/notifications", :basic_auth => {:username => user, :password => appPassword}, :headers => {"Accept" => "application/json"})
+       if resp.code!=200 then
+          Logging::warn("Bad response code: #{resp.code}")
+       end
        notifications=resp.parsed_response["ocs"]["data"]
        display=[]
        notifications.each do |notification|
@@ -30,9 +33,9 @@ module Notifications
    end
 
    def self.display_notification(notification)
-       furl=notification["icon"]
-       fname=furl.split("/")[-1]
-       download_file(furl,Dir.pwd+"/.cache/"+fname)
+#       furl=notification["icon"]
+#       fname=furl.split("/")[-1]
+#       download_file(furl,Dir.pwd+"/.cache/"+fname)
        Logging::debug("Sending notification: #{notification["message"]}")
        Termux::notify(content=notification["message"], group=notification["app"], n_id=notification["notification_id"], title=notification["subject"], image=Dir.pwd+"/.cache/"+fname)
    end

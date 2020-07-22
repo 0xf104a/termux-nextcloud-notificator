@@ -11,6 +11,6 @@ logging:
   level: debug
 
 app:
-  cache: "~/.cache" # Cache directory(created automatically)
-  password: "~/.appPassword" # app-password storage(created automatically)
+  cache: ".cache" # Cache directory(created automatically)
+  password: ".appPassword" # app-password storage(created automatically)
 
