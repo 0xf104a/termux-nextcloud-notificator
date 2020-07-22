@@ -1,7 +1,7 @@
 # Manually-written configuration for Nextcloud notification poller
 cloud:
-  endpoint: "cloud.p01ar.net" # Domain of your Nextcloud
-  user: "p01ar" # You username in Nextcloud
+  endpoint: "cloud.example.com" # Domain of your Nextcloud
+  user: "user" # You username in Nextcloud
 
 polling:
   interval: 5 # Interval in seconds between polling requests

@@ -49,7 +49,7 @@ module Notifications
               self.display_notification(notification)
           end
         rescue Interrupt
-          Logging::info("User reequested stop. Exiting")
+          Logging::info("User requested stop. Exiting")
           return
         rescue Exception => e
           Logging::error("Exception while polling: #{e.message}")
