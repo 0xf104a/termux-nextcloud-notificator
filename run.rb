@@ -11,6 +11,7 @@ require 'config.rb'
 CONFIGFILE="/data/data/com.termux/files/usr/etc/nextcloud-notificator.yml"
 
 Config::load(CONFIGFILE)
+Logging::init()
 
 FileUtils.mkdir_p(Config::get("app.cache"))
 

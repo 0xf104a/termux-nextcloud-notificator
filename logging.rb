@@ -20,7 +20,10 @@ module Logging
            "warn" =>2,
            "error"=>1,
            "none" =>0}
-
+ @file = nil
+ def self.init()
+   @file = Config::get("logging.file")
+ end
  def self.info(message)
    loglevel=Config::get("logging.level")
    loglevel=LEVELS[loglevel]
@@ -58,8 +61,11 @@ module Logging
    print("\r#{RED}#{BOLD}ERROR #{ENDC+BOLD}| #{get_time}:#{ENDC}#{message}\n")
  end
  def self.write2file(level,message)
+   if @file.nil?
+      return
+   end
    message="[#{level}]:#{get_time}:#{message}\n"
-   fname=Config::get("logging.file")
+   fname=@file
    open(fname, 'a') do |f|
       f << message
    end 
