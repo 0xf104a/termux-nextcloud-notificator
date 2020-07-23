@@ -60,7 +60,7 @@ module Logging
  def self.write2file(level,message)
    message="[#{level}]:#{get_time}:#{message}\n"
    fname=Config::get("logging.file")
-   open(fname, 'w') do |f|
+   open(fname, 'a') do |f|
       f << message
    end 
  end
