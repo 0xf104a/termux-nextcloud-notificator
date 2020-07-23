@@ -7,6 +7,7 @@ end
 
 module Logging
  class <<self
+    attr_accessor :loglevel
     attr_accessor :file
  end
  GREEN = "\033[32m"
@@ -21,11 +22,13 @@ module Logging
            "error"=>1,
            "none" =>0}
  @file = nil
+ @loglevel="info"
  def self.init()
    @file = Config::get("logging.file")
+   @loglevel = Config::get("logging.level")
  end
  def self.info(message)
-   loglevel=Config::get("logging.level")
+   loglevel=@loglevel
    loglevel=LEVELS[loglevel]
    if loglevel<3 then
       return
@@ -34,7 +37,7 @@ module Logging
    print("\r#{BLUE}#{BOLD}INFO  #{ENDC+BOLD}| #{get_time}:#{ENDC}#{message}\n")
  end
  def self.debug(message)
-   loglevel=Config::get("logging.level")
+   loglevel=@loglevel
    loglevel=LEVELS[loglevel]
    if loglevel<4 then
       return
@@ -43,7 +46,7 @@ module Logging
    print("\r#{GREEN}#{BOLD}DEBUG #{ENDC+BOLD}| #{get_time}:#{ENDC}#{message}\n")
  end 
  def self.warn(message)
-   loglevel=Config::get("logging.level")
+   loglevel=@loglevel
    loglevel=LEVELS[loglevel]
    if loglevel<2 then
       return
@@ -52,7 +55,7 @@ module Logging
    print("\r#{ORANGE}#{BOLD}WARN  #{ENDC+BOLD}| #{get_time}:#{ENDC}#{message}\n")
  end
  def self.error(message)
-   loglevel=Config::get("logging.level")
+   loglevel=@loglevel
    loglevel=LEVELS[loglevel]
    if loglevel<1 then
       return
@@ -61,7 +64,7 @@ module Logging
    print("\r#{RED}#{BOLD}ERROR #{ENDC+BOLD}| #{get_time}:#{ENDC}#{message}\n")
  end
  def self.write2file(level,message)
-   if @file.nil?
+   if @file.nil? then
       return
    end
    message="[#{level}]:#{get_time}:#{message}\n"
