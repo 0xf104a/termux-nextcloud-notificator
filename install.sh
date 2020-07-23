@@ -176,7 +176,11 @@ target_update(){
     exec "rm -rf ${TERMUX_ROOT}/usr/share/nextcloud-notificator"
     exec "rm -rf ${TERMUX_ROOT}/home/.termux/boot/boot-notificator.sh"
     target_gems
-    target_install
+    require_directory "${TERMUX_ROOT}/usr/share/nextcloud-notificator"
+    exec "cp ./*.rb ${TERMUX_ROOT}/usr/share/nextcloud-notificator"
+    require_directory "${TERMUX_ROOT}/home/.termux/boot/"
+    exec "cp ./boot.sh ${TERMUX_ROOT}/home/.termux/boot/boot-notificator.sh"
+    success "Update complete"
 }
 
 target_configure(){
