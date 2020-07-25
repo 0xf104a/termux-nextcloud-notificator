@@ -32,7 +32,9 @@ cloud:
   user: "user" # You username in Nextcloud
 ...
 ```
+
 <br>
+
 So here you should set following two variables `endpoint` and `user`:
 * `endpoint` is domain of you cloud
 * `user` your username at your server
