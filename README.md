@@ -34,6 +34,7 @@ So here you should set following two variables `endpoint` and `user`:
 * `endpoint` is domain of you cloud
 * `user` your username at your server
 After this it is recommend to do first run(On boot authorization may not open). So just run:
+
 ```
 $ ./run.rb
 ```
