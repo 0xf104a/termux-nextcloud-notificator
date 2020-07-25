@@ -19,9 +19,12 @@ Run `install.sh` script:<br>
 $ ./install.sh all
 ```
 Now you need to configure the program. There is two ways to do this:
+
 * Using `vim`: `./install.sh configure`
 * Using `nano`/`emacs`/...: `your-editor /data/data/com.termux/files/usr/etc/nextcloud-notificator.yml`
+
 The config files is as follows
+
 ```
 # Manually-written configuration for Nextcloud notification poller
 cloud:
