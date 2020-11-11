@@ -50,6 +50,8 @@ module Notifications
               self.display_notification(notification)
               new_set<<notification["notification_id"]
           end
+          Logging::debug(@displayed)
+          Logging::debug(new_set)
           @displayed.each do |_id|
               if not new_set.include?(_id)
                  Termux::notify_clear(_id)

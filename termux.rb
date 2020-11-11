@@ -8,7 +8,7 @@ module Termux
    end
    
    def self.notify_clear(n_id)
-        IO::popen(["termux-notification-remove","--id", n_id.to_s])
+        IO::popen(["termux-notification-remove", n_id.to_s])
    end
 
    def self.notify(content, group, n_id, title, image)
