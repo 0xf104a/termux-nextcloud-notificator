@@ -7,6 +7,10 @@ module Termux
        IO::popen(["termux-open-url",url])
    end
    
+   def self.notify_clear(n_id)
+        IO::popen(["termux-notification-remove","--id", n_id])
+   end
+
    def self.notify(content, group, n_id, title, image)
         Logging::debug("termux-notification -c #{sanitize(content)} --title #{sanitize(title)} --id #{n_id} --group #{sanitize(group)}\n")
 	IO::popen(["termux-notification", "--sound", "-c",content, "--title", title, "--id", n_id.to_s, "--group", "group"])

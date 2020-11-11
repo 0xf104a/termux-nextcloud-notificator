@@ -42,11 +42,19 @@ module Notifications
 
    def self.start_polling(endpoint, user, appPassword, sleep_time=5)
        while true
+        new_set=Set.new([])
         begin
 	  Logging::debug("Polling new messages")
 	  notifications=self.poll(endpoint, user, appPassword)
           notifications.each do |notification|
               self.display_notification(notification)
+              new_set<<notification["notification_id"]
+          end
+          @displayed.each do |_id|
+              if not new_set.include?(_id)
+                 Termux::notify_clear(_id)
+                 Logging::debug("Cleare notification #{_id}")
+              end
           end
         rescue Interrupt
           Logging::info("User requested stop. Exiting")
