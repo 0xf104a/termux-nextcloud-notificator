@@ -24,11 +24,19 @@ module Notifications
        end
        notifications=resp.parsed_response["ocs"]["data"]
        display=[]
+       active=Set.new([])
        notifications.each do |notification|
-          if @displayed.add?(notification["notification_id"]) != nil then
+         active<<notification["notification_id"]
+         if @displayed.add?(notification["notification_id"]) != nil then
              display<<notification
-          end
+         end
        end
+       @displayed.each do |_id|
+          if not active.include?(_id)
+             @displayed.delete(_id)
+             Termux::notify_clear(_id)
+          end
+       end    
        display
    end
 
@@ -49,14 +57,6 @@ module Notifications
           notifications.each do |notification|
               self.display_notification(notification)
               new_set<<notification["notification_id"]
-          end
-          Logging::debug(@displayed)
-          Logging::debug(new_set)
-          @displayed.each do |_id|
-              if not new_set.include?(_id)
-                 Termux::notify_clear(_id)
-                 Logging::debug("Cleared notification #{_id}")
-              end
           end
         rescue Interrupt
           Logging::info("User requested stop. Exiting")
