@@ -53,7 +53,7 @@ module Notifications
           @displayed.each do |_id|
               if not new_set.include?(_id)
                  Termux::notify_clear(_id)
-                 Logging::debug("Cleare notification #{_id}")
+                 Logging::debug("Cleared notification #{_id}")
               end
           end
         rescue Interrupt
